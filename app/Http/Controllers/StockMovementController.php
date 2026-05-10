@@ -34,6 +34,8 @@ class StockMovementController extends Controller
 
     public function stockOut(Request $request, Product $product)
     {
-        
+        $request->validate([
+            
+        ]);
     }
 }
