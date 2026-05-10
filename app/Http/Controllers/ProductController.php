@@ -18,10 +18,15 @@ class ProductController extends Controller
                   ->orWhere('sku', 'like', "%{$search}%");
             });
         }
-        
+
         if ($request->filled('category')) {
             $query->where('category_id', $request->category);
         }
+
+        $products = $query->latest()->paginate(10)->withQueryString();
+        $categories = Category::all();
+
+        return view('products.index', compact('products', 'categories'));
     }
 
 
