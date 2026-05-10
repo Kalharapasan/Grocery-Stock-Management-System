@@ -50,7 +50,7 @@ class StockMovementController extends Controller
                 'notes' => $request->notes,
             ]);
 
-            
+            $product->decrement('current_stock', $request->quantity);
         });
     }
 }
