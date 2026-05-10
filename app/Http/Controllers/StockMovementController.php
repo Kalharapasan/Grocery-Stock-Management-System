@@ -39,5 +39,9 @@ class StockMovementController extends Controller
             'reference' => 'nullable|string|max:255',
             'notes' => 'nullable|string',
         ]);
+        
+        DB::transaction(function () use ($request, $product) {
+
+        });
     }
 }
