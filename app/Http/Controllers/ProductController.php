@@ -72,7 +72,16 @@ class ProductController extends Controller
 
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'sku' => 'required|string|max:255|unique:products,sku,' . $product->id,
+            'category_id' => 'required|exists:categories,id',
+            'description' => 'nullable|string',
+            'unit' => 'required|string|in:kg,pcs,litre,pack,dozen',
+            'price' => 'required|numeric|min:0',
+            'cost_price' => 'required|numeric|min:0',
+            'low_stock_threshold' => 'required|integer|min:0',
+        ]);
     }
 
 
