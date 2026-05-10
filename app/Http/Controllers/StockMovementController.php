@@ -35,7 +35,9 @@ class StockMovementController extends Controller
     public function stockOut(Request $request, Product $product)
     {
         $request->validate([
-            
+            'quantity' => 'required|integer|min:1|max:' . $product->current_stock,
+            'reference' => 'nullable|string|max:255',
+            'notes' => 'nullable|string',
         ]);
     }
 }
