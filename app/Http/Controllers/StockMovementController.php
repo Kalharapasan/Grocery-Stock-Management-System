@@ -27,6 +27,8 @@ class StockMovementController extends Controller
             ]);
             $product->increment('current_stock', $request->quantity);
         });
-        
+        return redirect()->route('products.show', $product)
+            ->with('success', "Added {$request->quantity} {$product->unit} to stock.");
+
     }
 }
