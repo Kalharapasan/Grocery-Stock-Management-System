@@ -25,6 +25,8 @@ class StockMovementController extends Controller
                 'reference' => $request->reference,
                 'notes' => $request->notes,
             ]);
+            $product->increment('current_stock', $request->quantity);
         });
+        
     }
 }
