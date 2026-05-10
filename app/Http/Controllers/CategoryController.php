@@ -25,6 +25,8 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255|unique:categories',
             'description' => 'nullable|string',
         ]);
+        Category::create($validated);
+        return redirect()->route('categories.index')->with('success', 'Category created successfully.');
     }
 
     /**
