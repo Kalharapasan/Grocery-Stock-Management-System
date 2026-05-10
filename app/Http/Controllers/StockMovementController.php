@@ -9,5 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class StockMovementController extends Controller
 {
-    
+    public function stockIn(Request $request, Product $product){
+        
+    }
 }
