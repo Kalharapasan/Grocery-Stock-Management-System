@@ -48,6 +48,8 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
             'description' => 'nullable|string',
         ]);
+        $category->update($validated);
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
     }
 
     public function destroy(string $id)
