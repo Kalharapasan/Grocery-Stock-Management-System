@@ -18,6 +18,10 @@ class ProductController extends Controller
                   ->orWhere('sku', 'like', "%{$search}%");
             });
         }
+        
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
     }
 
 
