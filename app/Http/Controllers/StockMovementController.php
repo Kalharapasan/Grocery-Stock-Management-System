@@ -17,7 +17,14 @@ class StockMovementController extends Controller
         ]);
 
         DB::transaction(function () use ($request, $product) {
-            
+            StockMovement::create([
+                'product_id' => $product->id,
+                'user_id' => Auth::id(),
+                'type' => 'in',
+                'quantity' => $request->quantity,
+                'reference' => $request->reference,
+                'notes' => $request->notes,
+            ]);
         });
     }
 }
