@@ -31,4 +31,9 @@ class StockMovementController extends Controller
             ->with('success', "Added {$request->quantity} {$product->unit} to stock.");
 
     }
+
+    public function stockOut(Request $request, Product $product)
+    {
+        
+    }
 }
