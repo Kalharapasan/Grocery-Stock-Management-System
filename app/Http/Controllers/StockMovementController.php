@@ -9,5 +9,5 @@ use Illuminate\Support\Facades\DB;
 
 class StockMovementController extends Controller
 {
-    //
+    
 }
