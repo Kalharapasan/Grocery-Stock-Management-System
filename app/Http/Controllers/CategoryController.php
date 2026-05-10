@@ -7,19 +7,17 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    
+
     public function index()
     {
         $categories = Category::withCount('products')->latest()->paginate(10);
         return view('categories.index', compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
