@@ -49,6 +49,10 @@ class ProductController extends Controller
             'cost_price' => 'required|numeric|min:0',
             'low_stock_threshold' => 'required|integer|min:0',
         ]);
+
+        Product::create($validated);
+
+        return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
 
 
