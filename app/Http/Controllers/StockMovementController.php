@@ -52,5 +52,8 @@ class StockMovementController extends Controller
 
             $product->decrement('current_stock', $request->quantity);
         });
+
+        return redirect()->route('products.show', $product)
+            ->with('success', "Dispatched {$request->quantity} {$product->unit} to customer.");
     }
 }
