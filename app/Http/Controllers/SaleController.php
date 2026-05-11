@@ -37,6 +37,9 @@ class SaleController extends Controller
         DB::transaction(function () {
             $total = 0;
             $lines = [];
+            foreach ($request->items as $item) {
+                
+            }
         });
 
     }
