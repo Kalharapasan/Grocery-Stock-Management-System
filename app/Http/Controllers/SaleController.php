@@ -84,6 +84,7 @@ class SaleController extends Controller
             session(['last_sale_id' => $sale->id]);
         });
 
+        return redirect()->route('sales.show', session('last_sale_id'))->with('success', 'Sale recorded successfully.');
     }
 
     public function show(string $id)
