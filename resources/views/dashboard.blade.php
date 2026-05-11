@@ -21,6 +21,15 @@
             </div>
         </div>
 
+        <div class="col-md-3 mb-3">
+            <div class="card bg-warning text-dark">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-exclamation-triangle"></i> Low Stock</h5>
+                    <h2>{{ $lowStockProducts->count() }}</h2>
+                </div>
+            </div>
+        </div>
+
 
 
     </div>
