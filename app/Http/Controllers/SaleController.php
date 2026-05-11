@@ -44,7 +44,9 @@ class SaleController extends Controller
                     abort(422, "Insufficient stock for {$product->name}.");
                 }
 
-                
+                $subtotal = $product->price * $item['quantity'];
+                $total += $subtotal;
+                $lines[] = compact('product', 'item', 'subtotal');
             }
         });
 
