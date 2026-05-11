@@ -30,6 +30,14 @@
             </div>
         </div>
 
+        <div class="col-md-3 mb-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-currency-exchange"></i> Stock Value</h5>
+                    <h2>Rs. {{ number_format($totalStockValue, 2) }}</h2>
+                </div>
+            </div>
+        </div>
 
 
     </div>
