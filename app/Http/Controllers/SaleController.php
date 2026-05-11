@@ -21,7 +21,8 @@ class SaleController extends Controller
 
     public function create()
     {
-        //
+        $products = Product::where('current_stock', '>', 0)->orderBy('name')->get();
+        return view('sales.create', compact('products'));
     }
 
 
