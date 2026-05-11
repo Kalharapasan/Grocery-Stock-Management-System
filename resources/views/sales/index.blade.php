@@ -19,6 +19,7 @@
                         <th>ID</th>
                         <th>Customer</th>
                         <th>Phone</th>
+                        <th>Payment</th>
                         <th>Total</th>
                         <th>Items</th>
                         <th>Date</th>
@@ -32,6 +33,7 @@
                         <td><code>#{{ $sale->id }}</code></td>
                         <td>{{ $sale->customer_name ?? 'Walk-in' }}</td>
                         <td>{{ $sale->customer_phone ?? '-' }}</td>
+                        <td><span class="badge bg-light text-dark border">{{ ucfirst($sale->payment_method) }}</span></td>
                         <td><strong>Rs. {{ number_format($sale->total_amount, 2) }}</strong></td>
                         <td>{{ $sale->items->count() }}</td>
                         <td>{{ $sale->created_at->format('Y-m-d H:i') }}</td>
