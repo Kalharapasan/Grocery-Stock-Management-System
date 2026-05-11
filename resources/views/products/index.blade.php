@@ -85,7 +85,9 @@
                         </td>
                     </tr>
                     @empty
-                    <tr><td colspan="7" class="text-center text-muted py-4">No products found.</td></tr>
+                    <tr>
+                        <td colspan="7" class="text-center text-muted py-4">No products found.</td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>
