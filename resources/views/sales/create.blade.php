@@ -6,11 +6,12 @@
 <div class="row">
     <!-- Left Column: POS Items -->
     <div class="col-lg-7 mb-4">
-        <div class="card h-100 shadow-sm">
-            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                <h5 class="mb-0"><i class="bi bi-cart"></i> Point of Sale</h5>
+        <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3">
+                <h5 class="mb-0 fw-bold"><i class="bi bi-cart3 me-2"></i> Point of Sale</h5>
+                <span class="badge bg-light text-primary rounded-pill fs-6 px-3" id="cartItemCount">0 Items</span>
             </div>
-            <div class="card-body d-flex flex-column">
+            <div class="card-body d-flex flex-column bg-body-tertiary p-4">
                 <!-- Search Bar and Dropdown -->
                 <div class="row g-2 mb-3">
                     <div class="col-md-7 position-relative">
@@ -69,66 +70,80 @@
             <!-- Hidden inputs container for cart items -->
             <div id="hiddenItemsContainer"></div>
 
-            <div class="card shadow-sm mb-3">
-                <div class="card-header bg-light"><strong><i class="bi bi-person"></i> Customer Info</strong></div>
-                <div class="card-body">
-                    <div class="row g-2">
+            <div class="card shadow-sm mb-4 border-0 rounded-4">
+                <div class="card-header bg-white py-3 border-bottom-0">
+                    <h6 class="mb-0 fw-bold text-uppercase text-muted"><i class="bi bi-person-lines-fill me-2"></i>Customer Info</h6>
+                </div>
+                <div class="card-body pt-0">
+                    <div class="row g-3">
                         <div class="col-12">
-                            <input type="text" class="form-control" name="customer_name" placeholder="Customer Name (Walk-in)">
+                            <input type="text" class="form-control form-control-lg bg-light border-0" name="customer_name" placeholder="Customer Name (Walk-in)">
                         </div>
                         <div class="col-12">
-                            <input type="text" class="form-control" name="customer_phone" placeholder="Phone Number (Optional)">
+                            <input type="text" class="form-control form-control-lg bg-light border-0" name="customer_phone" placeholder="Phone Number (Optional)">
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="card shadow-sm mb-3">
-                <div class="card-header bg-light"><strong><i class="bi bi-calculator"></i> Order Summary</strong></div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between mb-2">
-                        <span class="text-muted">Subtotal</span>
-                        <strong id="summarySubtotal">Rs. 0.00</strong>
+            <div class="card shadow-sm mb-4 border-0 rounded-4">
+                <div class="card-header bg-white py-3 border-bottom-0">
+                    <h6 class="mb-0 fw-bold text-uppercase text-muted"><i class="bi bi-receipt me-2"></i>Order Summary</h6>
+                </div>
+                <div class="card-body pt-0">
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="text-secondary fs-5">Subtotal</span>
+                        <strong class="fs-5" id="summarySubtotal">Rs. 0.00</strong>
                     </div>
                     
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="text-muted">Tax (Rs.)</span>
-                        <input type="number" step="0.01" min="0" class="form-control form-control-sm w-25 text-end" name="tax_amount" id="taxInput" value="0" onchange="calculateTotals()">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-secondary">Tax (Rs.)</span>
+                        <div class="input-group w-50">
+                            <span class="input-group-text bg-light border-0"><i class="bi bi-plus-slash-minus"></i></span>
+                            <input type="number" step="0.01" min="0" class="form-control text-end bg-light border-0" name="tax_amount" id="taxInput" value="0" onchange="calculateTotals()">
+                        </div>
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-muted">Discount (Rs.)</span>
-                        <input type="number" step="0.01" min="0" class="form-control form-control-sm w-25 text-end" name="discount_amount" id="discountInput" value="0" onchange="calculateTotals()">
+                        <span class="text-secondary">Discount (Rs.)</span>
+                        <div class="input-group w-50">
+                            <span class="input-group-text bg-light border-0"><i class="bi bi-percent"></i></span>
+                            <input type="number" step="0.01" min="0" class="form-control text-end bg-light border-0" name="discount_amount" id="discountInput" value="0" onchange="calculateTotals()">
+                        </div>
                     </div>
                     
-                    <hr>
+                    <hr class="text-muted opacity-25 my-4">
                     
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h4 class="mb-0">Total</h4>
-                        <h3 class="mb-0 text-primary" id="summaryTotal">Rs. 0.00</h3>
+                    <div class="d-flex justify-content-between align-items-center p-3 bg-primary bg-opacity-10 rounded-3">
+                        <h4 class="mb-0 fw-bold text-primary">Total</h4>
+                        <h2 class="mb-0 fw-bold text-primary" id="summaryTotal">Rs. 0.00</h2>
                     </div>
                 </div>
             </div>
 
-            <div class="card shadow-sm mb-3">
+            <div class="card shadow-sm mb-4 border-0 rounded-4">
                 <div class="card-body">
-                    <div class="mb-3">
-                        <label class="form-label">Payment Method</label>
-                        <select name="payment_method" class="form-select form-select-lg" required>
-                            <option value="cash">💵 Cash</option>
-                            <option value="card">💳 Card</option>
-                            <option value="mobile">📱 Mobile Pay</option>
-                        </select>
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-muted text-uppercase mb-3">Payment Method</label>
+                        <div class="d-flex gap-2">
+                            <input type="radio" class="btn-check" name="payment_method" id="payCash" value="cash" checked required>
+                            <label class="btn btn-outline-primary flex-fill py-3" for="payCash"><i class="bi bi-cash-stack fs-4 d-block mb-1"></i> Cash</label>
+
+                            <input type="radio" class="btn-check" name="payment_method" id="payCard" value="card">
+                            <label class="btn btn-outline-primary flex-fill py-3" for="payCard"><i class="bi bi-credit-card fs-4 d-block mb-1"></i> Card</label>
+
+                            <input type="radio" class="btn-check" name="payment_method" id="payMobile" value="mobile">
+                            <label class="btn btn-outline-primary flex-fill py-3" for="payMobile"><i class="bi bi-phone fs-4 d-block mb-1"></i> Mobile</label>
+                        </div>
                     </div>
                     <div>
-                        <label class="form-label">Notes</label>
-                        <textarea class="form-control" name="notes" rows="2" placeholder="Optional notes..."></textarea>
+                        <textarea class="form-control bg-light border-0" name="notes" rows="2" placeholder="Add optional order notes here..."></textarea>
                     </div>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-success btn-lg w-100 shadow" id="checkoutBtn" disabled>
-                <i class="bi bi-check-circle"></i> Complete Sale
+            <button type="submit" class="btn btn-success btn-lg w-100 shadow py-3 fw-bold fs-5 rounded-pill" id="checkoutBtn" disabled>
+                <i class="bi bi-check2-circle me-2"></i> Complete Sale
             </button>
         </form>
     </div>
@@ -271,23 +286,33 @@
 
             cart.forEach((item, index) => {
                 const tr = document.createElement('tr');
+                tr.className = 'bg-white shadow-sm rounded-3 mb-2 d-table-row border-bottom-0';
+                tr.style.transition = 'all 0.2s';
+                
                 const itemSubtotal = item.price * item.qty;
                 
                 tr.innerHTML = `
-                    <td>
-                        <strong>${item.name}</strong>
-                        <div class="text-muted small">Max: ${item.stock}</div>
+                    <td class="ps-3 border-0 py-3 rounded-start">
+                        <div class="fw-bold text-dark fs-6">${item.name}</div>
+                        <div class="text-muted small"><i class="bi bi-box me-1"></i>Stock: ${item.stock}</div>
                     </td>
-                    <td>Rs. ${item.price.toFixed(2)}</td>
-                    <td>
-                        <input type="number" class="form-control form-control-sm text-center" 
-                               value="${item.qty}" min="1" max="${item.stock}" 
-                               onchange="updateQty(${item.id}, this.value)">
+                    <td class="border-0 align-middle">Rs. ${item.price.toFixed(2)}</td>
+                    <td class="border-0 align-middle">
+                        <div class="input-group input-group-sm w-100" style="min-width: 100px;">
+                            <button class="btn btn-outline-secondary px-2" type="button" onclick="updateQty(${item.id}, ${item.qty - 1})">
+                                <i class="bi bi-dash"></i>
+                            </button>
+                            <input type="text" class="form-control text-center px-1" value="${item.qty}" 
+                                   onchange="updateQty(${item.id}, this.value)">
+                            <button class="btn btn-outline-secondary px-2" type="button" onclick="updateQty(${item.id}, ${item.qty + 1})">
+                                <i class="bi bi-plus"></i>
+                            </button>
+                        </div>
                     </td>
-                    <td><strong>Rs. ${itemSubtotal.toFixed(2)}</strong></td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-outline-danger border-0" onclick="removeFromCart(${item.id})">
-                            <i class="bi bi-x-lg"></i>
+                    <td class="border-0 align-middle"><strong class="text-primary">Rs. ${itemSubtotal.toFixed(2)}</strong></td>
+                    <td class="border-0 align-middle pe-3 rounded-end">
+                        <button type="button" class="btn btn-sm btn-light text-danger rounded-circle p-2" onclick="removeFromCart(${item.id})">
+                            <i class="bi bi-trash-fill"></i>
                         </button>
                     </td>
                 `;
@@ -300,6 +325,10 @@
                 `;
             });
         }
+        
+        // Update item count badge
+        document.getElementById('cartItemCount').textContent = cart.length + (cart.length === 1 ? ' Item' : ' Items');
+        
         calculateTotals();
     }
 
