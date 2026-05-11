@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Sale;
+use App\Models\SaleItem;
+use App\Models\StockMovement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SaleController extends Controller
@@ -34,9 +37,10 @@ class SaleController extends Controller
             'items.*.quantity' => 'required|integer|min:1',
         ]);
 
-        DB::transaction(function () {
+        DB::transaction(function () use ($request) {
             $total = 0;
             $lines = [];
+
             foreach ($request->items as $item) {
                 $product = Product::lockForUpdate()->findOrFail($item['product_id']);
 
@@ -81,29 +85,18 @@ class SaleController extends Controller
 
                 $product->decrement('current_stock', $item['quantity']);
             }
+
             session(['last_sale_id' => $sale->id]);
         });
 
-        return redirect()->route('sales.show', session('last_sale_id'))->with('success', 'Sale recorded successfully.');
+        return redirect()->route('sales.show', session('last_sale_id'))
+            ->with('success', 'Sale recorded successfully.');
     }
 
-    public function show(string $id)
+    public function show(Sale $sale)
     {
-        //
-    }
+        $sale->load('items.product', 'user');
 
-    public function edit(string $id)
-    {
-        //
-    }
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    public function destroy(string $id)
-    {
-        //
+        return view('sales.show', compact('sale'));
     }
 }
