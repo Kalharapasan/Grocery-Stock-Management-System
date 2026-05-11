@@ -121,3 +121,16 @@ function removeItem(btn) {
     btn.closest('.item-row').remove();
     updateGrandTotal();
 }
+
+function updatePrice(select) {
+    const row = select.closest('.item-row');
+    const option = select.options[select.selectedIndex];
+    const price = option.dataset.price || 0;
+    const stock = option.dataset.stock || 0;
+    const unit = option.dataset.unit || '';
+
+    row.querySelector('.price-display').value = 'Rs. ' + parseFloat(price).toFixed(2);
+    row.querySelector('.qty-input').max = stock;
+    updateSubtotal(row.querySelector('.qty-input'));
+}
+
