@@ -47,11 +47,12 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'cost_price' => 'required|numeric|min:0',
             'low_stock_threshold' => 'required|integer|min:0',
+            'expiry_date' => 'nullable|date',
         ]);
 
         Product::create($request->only([
             'name', 'sku', 'category_id', 'description', 'unit',
-            'price', 'cost_price', 'low_stock_threshold',
+            'price', 'cost_price', 'low_stock_threshold', 'expiry_date'
         ]));
 
         return redirect()->route('products.index')->with('success', 'Product created successfully.');
@@ -81,11 +82,12 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'cost_price' => 'required|numeric|min:0',
             'low_stock_threshold' => 'required|integer|min:0',
+            'expiry_date' => 'nullable|date',
         ]);
 
         $product->update($request->only([
             'name', 'sku', 'category_id', 'description', 'unit',
-            'price', 'cost_price', 'low_stock_threshold',
+            'price', 'cost_price', 'low_stock_threshold', 'expiry_date'
         ]));
 
         return redirect()->route('products.index')->with('success', 'Product updated successfully.');

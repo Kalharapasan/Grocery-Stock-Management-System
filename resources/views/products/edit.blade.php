@@ -74,6 +74,14 @@
                             @error('low_stock_threshold') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="expiry_date" class="form-label">Expiry Date</label>
+                            <input type="date" class="form-control @error('expiry_date') is-invalid @enderror"
+                                   id="expiry_date" name="expiry_date" value="{{ old('expiry_date', $product->expiry_date) }}">
+                            @error('expiry_date') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
+                    </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control @error('description') is-invalid @enderror"
