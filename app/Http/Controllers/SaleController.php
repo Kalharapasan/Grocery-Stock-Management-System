@@ -15,26 +15,24 @@ class SaleController extends Controller
     public function index()
     {
         $sales = Sale::with('user')->latest()->paginate(15);
-
         return view('sales.index', compact('sales'));
     }
 
     public function create()
     {
         $products = Product::where('current_stock', '>', 0)->orderBy('name')->get();
-
         return view('sales.create', compact('products'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'customer_name' => 'nullable|string|max:255',
+            'customer_name'  => 'nullable|string|max:255',
             'customer_phone' => 'nullable|string|max:50',
-            'notes' => 'nullable|string',
-            'items' => 'required|array|min:1',
+            'notes'          => 'nullable|string',
+            'items'          => 'required|array|min:1',
             'items.*.product_id' => 'required|exists:products,id',
-            'items.*.quantity' => 'required|integer|min:1',
+            'items.*.quantity'   => 'required|integer|min:1',
         ]);
 
         DB::transaction(function () use ($request) {
@@ -54,33 +52,29 @@ class SaleController extends Controller
             }
 
             $sale = Sale::create([
-                'user_id' => Auth::id(),
-                'customer_name' => $request->customer_name,
+                'user_id'        => Auth::id(),
+                'customer_name'  => $request->customer_name,
                 'customer_phone' => $request->customer_phone,
-                'total_amount' => $total,
-                'notes' => $request->notes,
+                'total_amount'   => $total,
+                'notes'          => $request->notes,
             ]);
 
-            foreach ($lines as $line) {
-                $product = $line['product'];
-                $item = $line['item'];
-                $subtotal = $line['subtotal'];
-
+            foreach ($lines as ['product' => $product, 'item' => $item, 'subtotal' => $subtotal]) {
                 SaleItem::create([
-                    'sale_id' => $sale->id,
+                    'sale_id'    => $sale->id,
                     'product_id' => $product->id,
-                    'quantity' => $item['quantity'],
+                    'quantity'   => $item['quantity'],
                     'unit_price' => $product->price,
-                    'subtotal' => $subtotal,
+                    'subtotal'   => $subtotal,
                 ]);
 
                 StockMovement::create([
                     'product_id' => $product->id,
-                    'user_id' => Auth::id(),
-                    'type' => 'out',
-                    'quantity' => $item['quantity'],
-                    'reference' => "Sale #{$sale->id}",
-                    'notes' => $request->customer_name ? "Customer: {$request->customer_name}" : null,
+                    'user_id'    => Auth::id(),
+                    'type'       => 'out',
+                    'quantity'   => $item['quantity'],
+                    'reference'  => "Sale #{$sale->id}",
+                    'notes'      => $request->customer_name ? "Customer: {$request->customer_name}" : null,
                 ]);
 
                 $product->decrement('current_stock', $item['quantity']);
@@ -96,7 +90,6 @@ class SaleController extends Controller
     public function show(Sale $sale)
     {
         $sale->load('items.product', 'user');
-
         return view('sales.show', compact('sale'));
     }
 }

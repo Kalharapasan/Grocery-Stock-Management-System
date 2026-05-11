@@ -10,7 +10,6 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::withCount('products')->latest()->paginate(10);
-
         return view('categories.index', compact('categories'));
     }
 
@@ -21,38 +20,38 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255|unique:categories',
             'description' => 'nullable|string',
         ]);
-        Category::create($validated);
 
+        Category::create($request->only('name', 'description'));
         return redirect()->route('categories.index')->with('success', 'Category created successfully.');
     }
 
-    public function show(string $id)
+    public function show(Category $category)
     {
         $category->load('products');
-
         return view('categories.show', compact('category'));
     }
 
-    public function edit(string $id)
+    public function edit(Category $category)
     {
         return view('categories.edit', compact('category'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
             'description' => 'nullable|string',
         ]);
-        $category->update($validated);
+
+        $category->update($request->only('name', 'description'));
         return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
     }
 
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
         $category->delete();
         return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
