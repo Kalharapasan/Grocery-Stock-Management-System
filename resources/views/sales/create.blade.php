@@ -71,8 +71,31 @@
                             </div>
                         </div>
                     </div>
-                    <div class="text-end">
-                        <h4>Total: <span id="grandTotal">Rs. 0.00</span></h4>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Payment Method <span class="text-danger">*</span></label>
+                                <select name="payment_method" class="form-select" required>
+                                    <option value="cash">Cash</option>
+                                    <option value="card">Card</option>
+                                    <option value="mobile">Mobile Pay</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-end">
+                                <h5>Subtotal: <span id="subtotalAmount">Rs. 0.00</span></h5>
+                                <div class="d-flex justify-content-end align-items-center mb-2">
+                                    <label class="me-2">Tax (Rs.):</label>
+                                    <input type="number" step="0.01" min="0" class="form-control w-25 text-end" name="tax_amount" id="taxAmount" value="0" onchange="updateGrandTotal()">
+                                </div>
+                                <div class="d-flex justify-content-end align-items-center mb-3">
+                                    <label class="me-2">Discount (Rs.):</label>
+                                    <input type="number" step="0.01" min="0" class="form-control w-25 text-end" name="discount_amount" id="discountAmount" value="0" onchange="updateGrandTotal()">
+                                </div>
+                                <h3 class="text-primary">Total: <span id="grandTotal">Rs. 0.00</span></h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -145,15 +168,22 @@ function updateSubtotal(input) {
 }
 
 function updateGrandTotal() {
-    let total = 0;
+    let subtotal = 0;
     document.querySelectorAll('.item-row').forEach(row => {
         const select = row.querySelector('.product-select');
         const option = select.options[select.selectedIndex];
-        const price = parseFloat(option.dataset.price) || 0;
+        const price = parseFloat(option?.dataset.price) || 0;
         const qty = parseInt(row.querySelector('.qty-input').value) || 0;
-        total += price * qty;
+        subtotal += price * qty;
     });
-    document.getElementById('grandTotal').textContent = 'Rs. ' + total.toFixed(2);
+    
+    document.getElementById('subtotalAmount').textContent = 'Rs. ' + subtotal.toFixed(2);
+    
+    const tax = parseFloat(document.getElementById('taxAmount').value) || 0;
+    const discount = parseFloat(document.getElementById('discountAmount').value) || 0;
+    
+    const grandTotal = subtotal + tax - discount;
+    document.getElementById('grandTotal').textContent = 'Rs. ' + grandTotal.toFixed(2);
 }
 </script>
 @endsection

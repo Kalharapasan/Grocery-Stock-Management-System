@@ -19,6 +19,7 @@
                     <div class="col-md-6">
                         <p><strong>Customer:</strong> {{ $sale->customer_name ?? 'Walk-in Customer' }}</p>
                         <p><strong>Phone:</strong> {{ $sale->customer_phone ?? 'N/A' }}</p>
+                        <p><strong>Payment Method:</strong> <span class="badge bg-info text-dark">{{ ucfirst($sale->payment_method) }}</span></p>
                     </div>
                     <div class="col-md-6">
                         <p><strong>Date:</strong> {{ $sale->created_at->format('Y-m-d H:i:s') }}</p>
@@ -58,8 +59,24 @@
                     </tbody>
                     <tfoot class="table-light">
                         <tr>
-                            <td colspan="3" class="text-end"><strong>Total:</strong></td>
-                            <td><strong>Rs. {{ number_format($sale->total_amount, 2) }}</strong></td>
+                            <td colspan="3" class="text-end"><strong>Subtotal:</strong></td>
+                            <td>Rs. {{ number_format($sale->subtotal, 2) }}</td>
+                        </tr>
+                        @if($sale->tax_amount > 0)
+                        <tr>
+                            <td colspan="3" class="text-end"><strong>Tax:</strong></td>
+                            <td>+ Rs. {{ number_format($sale->tax_amount, 2) }}</td>
+                        </tr>
+                        @endif
+                        @if($sale->discount_amount > 0)
+                        <tr>
+                            <td colspan="3" class="text-end"><strong>Discount:</strong></td>
+                            <td class="text-danger">- Rs. {{ number_format($sale->discount_amount, 2) }}</td>
+                        </tr>
+                        @endif
+                        <tr>
+                            <td colspan="3" class="text-end"><strong>Grand Total:</strong></td>
+                            <td><h5 class="mb-0 text-primary">Rs. {{ number_format($sale->total_amount, 2) }}</h5></td>
                         </tr>
                     </tfoot>
                 </table>
