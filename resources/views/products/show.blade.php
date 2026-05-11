@@ -36,6 +36,19 @@
                         </td>
                     </tr>
                     <tr><th>Low Stock At:</th><td>{{ $product->low_stock_threshold }} {{ $product->unit }}</td></tr>
+                    <tr>
+                        <th>Expiry Date:</th>
+                        <td>
+                            @if($product->expiry_date)
+                                <span class="badge {{ $product->isExpired() ? 'bg-danger' : ($product->isExpiringSoon() ? 'bg-warning text-dark' : 'bg-info text-white') }} fs-6">
+                                    {{ \Carbon\Carbon::parse($product->expiry_date)->format('M d, Y') }}
+                                    @if($product->isExpired()) (Expired) @elseif($product->isExpiringSoon()) (Soon) @endif
+                                </span>
+                            @else
+                                <span class="text-muted">No expiry date set</span>
+                            @endif
+                        </td>
+                    </tr>
                     <tr><th>Stock Value:</th><td>Rs. {{ number_format($product->current_stock * $product->price, 2) }}</td></tr>
                 </table>
                 @if($product->description)

@@ -46,6 +46,7 @@
                         <th>Category</th>
                         <th>Price</th>
                         <th>Stock</th>
+                        <th>Expiry</th>
                         <th>Unit</th>
                         <th width="200">Actions</th>
                     </tr>
@@ -60,10 +61,19 @@
                         <td>
                             @if($product->current_stock <= 0)
                                 <span class="badge bg-danger">{{ $product->current_stock }}</span>
-                            @elseif($product->current_stock <= $product->low_stock_threshold)
+                            @elseif($product->isLowStock())
                                 <span class="badge bg-warning text-dark">{{ $product->current_stock }}</span>
                             @else
                                 <span class="badge bg-success">{{ $product->current_stock }}</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if($product->expiry_date)
+                                <span class="badge {{ $product->isExpired() ? 'bg-danger' : ($product->isExpiringSoon() ? 'bg-warning text-dark' : 'bg-info text-white') }}">
+                                    {{ \Carbon\Carbon::parse($product->expiry_date)->format('Y-m-d') }}
+                                </span>
+                            @else
+                                <span class="text-muted small">N/A</span>
                             @endif
                         </td>
                         <td>{{ $product->unit }}</td>
