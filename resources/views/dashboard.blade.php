@@ -12,6 +12,15 @@
             </div>
         </div>
 
-        
+        <div class="col-md-3 mb-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-tags"></i> Categories</h5>
+                    <h2>{{ $totalCategories }}</h2>
+                </div>
+            </div>
+        </div>
+
+
 
     </div>
