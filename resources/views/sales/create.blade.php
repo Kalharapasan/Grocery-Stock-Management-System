@@ -134,3 +134,16 @@ function updatePrice(select) {
     updateSubtotal(row.querySelector('.qty-input'));
 }
 
+function updateSubtotal(input) {
+    const row = input.closest('.item-row');
+    const select = row.querySelector('.product-select');
+    const option = select.options[select.selectedIndex];
+    const price = parseFloat(option.dataset.price) || 0;
+    const qty = parseInt(input.value) || 0;
+    const subtotal = price * qty;
+
+    row.querySelector('.subtotal-display').value = 'Rs. ' + subtotal.toFixed(2);
+    updateGrandTotal();
+}
+
+
