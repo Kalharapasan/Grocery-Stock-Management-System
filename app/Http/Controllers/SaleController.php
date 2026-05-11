@@ -57,32 +57,31 @@ class SaleController extends Controller
                 'notes' => $request->notes,
             ]);
 
-
             foreach ($lines as $line) {
                 $product = $line['product'];
                 $item = $line['item'];
                 $subtotal = $line['subtotal'];
 
                 SaleItem::create([
-                    'sale_id'    => $sale->id,
+                    'sale_id' => $sale->id,
                     'product_id' => $product->id,
-                    'quantity'   => $item['quantity'],
+                    'quantity' => $item['quantity'],
                     'unit_price' => $product->price,
-                    'subtotal'   => $subtotal,
+                    'subtotal' => $subtotal,
                 ]);
 
                 StockMovement::create([
                     'product_id' => $product->id,
-                    'user_id'    => Auth::id(),
-                    'type'       => 'out',
-                    'quantity'   => $item['quantity'],
-                    'reference'  => "Sale #{$sale->id}",
-                    'notes'      => $request->customer_name ? "Customer: {$request->customer_name}" : null,
+                    'user_id' => Auth::id(),
+                    'type' => 'out',
+                    'quantity' => $item['quantity'],
+                    'reference' => "Sale #{$sale->id}",
+                    'notes' => $request->customer_name ? "Customer: {$request->customer_name}" : null,
                 ]);
 
                 $product->decrement('current_stock', $item['quantity']);
             }
-
+            session(['last_sale_id' => $sale->id]);
         });
 
     }
