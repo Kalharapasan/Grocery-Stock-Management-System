@@ -36,6 +36,11 @@ class SaleController extends Controller
             'items.*.product_id' => 'required|exists:products,id',
             'items.*.quantity'   => 'required|integer|min:1',
         ]);
+
+        DB::transaction(function () use ($request) {
+           
+        });
+
     }
 
 
