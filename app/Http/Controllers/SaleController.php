@@ -29,6 +29,9 @@ class SaleController extends Controller
         $request->validate([
             'customer_name'  => 'nullable|string|max:255',
             'customer_phone' => 'nullable|string|max:50',
+            'payment_method' => 'required|in:cash,card,mobile',
+            'tax_amount'     => 'nullable|numeric|min:0',
+            'discount_amount'=> 'nullable|numeric|min:0',
             'notes'          => 'nullable|string',
             'items'          => 'required|array|min:1',
             'items.*.product_id' => 'required|exists:products,id',
@@ -55,7 +58,11 @@ class SaleController extends Controller
                 'user_id'        => Auth::id(),
                 'customer_name'  => $request->customer_name,
                 'customer_phone' => $request->customer_phone,
-                'total_amount'   => $total,
+                'payment_method' => $request->payment_method,
+                'subtotal'       => $total,
+                'tax_amount'     => $request->tax_amount ?: 0,
+                'discount_amount'=> $request->discount_amount ?: 0,
+                'total_amount'   => $total + ($request->tax_amount ?: 0) - ($request->discount_amount ?: 0),
                 'notes'          => $request->notes,
             ]);
 
