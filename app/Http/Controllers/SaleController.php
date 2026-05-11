@@ -29,7 +29,12 @@ class SaleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            
+            'customer_name'  => 'nullable|string|max:255',
+            'customer_phone' => 'nullable|string|max:50',
+            'notes'          => 'nullable|string',
+            'items'          => 'required|array|min:1',
+            'items.*.product_id' => 'required|exists:products,id',
+            'items.*.quantity'   => 'required|integer|min:1',
         ]);
     }
 
