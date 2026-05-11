@@ -14,7 +14,8 @@ class SaleController extends Controller
 
     public function index()
     {
-        //
+        $sales = Sale::with('user')->latest()->paginate(15);
+        return view('sales.index', compact('sales'));
     }
 
 
@@ -47,7 +48,7 @@ class SaleController extends Controller
         //
     }
 
-  
+
     public function destroy(string $id)
     {
         //
