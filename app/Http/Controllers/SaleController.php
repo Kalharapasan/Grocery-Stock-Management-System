@@ -38,6 +38,12 @@ class SaleController extends Controller
             $total = 0;
             $lines = [];
             foreach ($request->items as $item) {
+                $product = Product::lockForUpdate()->findOrFail($item['product_id']);
+
+                if ($product->current_stock < $item['quantity']) {
+                    abort(422, "Insufficient stock for {$product->name}.");
+                }
+
                 
             }
         });
