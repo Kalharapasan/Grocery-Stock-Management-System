@@ -94,3 +94,27 @@
 </div>
 
 
+@section('scripts')
+<script>
+let itemIndex = 1;
+
+function addItem() {
+    const container = document.getElementById('itemsContainer');
+    const firstRow = container.querySelector('.item-row');
+    const newRow = firstRow.cloneNode(true);
+
+    newRow.dataset.index = itemIndex;
+    newRow.querySelectorAll('[name]').forEach(el => {
+        el.name = el.name.replace('[0]', '[' + itemIndex + ']');
+    });
+    newRow.querySelector('.product-select').value = '';
+    newRow.querySelector('.qty-input').value = 1;
+    newRow.querySelector('.price-display').value = '';
+    newRow.querySelector('.subtotal-display').value = '';
+    newRow.querySelector('.btn-danger').style.display = 'block';
+
+    container.appendChild(newRow);
+    itemIndex++;
+}
+
+
