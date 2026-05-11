@@ -117,4 +117,7 @@ function addItem() {
     itemIndex++;
 }
 
-
+function removeItem(btn) {
+    btn.closest('.item-row').remove();
+    updateGrandTotal();
+}
