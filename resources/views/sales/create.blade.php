@@ -11,15 +11,28 @@
                 <h5 class="mb-0"><i class="bi bi-cart"></i> Point of Sale</h5>
             </div>
             <div class="card-body d-flex flex-column">
-                <!-- Search Bar -->
-                <div class="position-relative mb-3">
-                    <div class="input-group">
-                        <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
-                        <input type="text" id="productSearch" class="form-control form-control-lg" placeholder="Search by Product Name or SKU..." autocomplete="off">
+                <!-- Search Bar and Dropdown -->
+                <div class="row g-2 mb-3">
+                    <div class="col-md-7 position-relative">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                            <input type="text" id="productSearch" class="form-control form-control-lg" placeholder="Search by Product Name or SKU..." autocomplete="off">
+                        </div>
+                        <ul id="searchResults" class="list-group position-absolute w-100 shadow-sm" style="z-index: 1050; display: none; max-height: 250px; overflow-y: auto;">
+                            <!-- Results injected here via JS -->
+                        </ul>
                     </div>
-                    <ul id="searchResults" class="list-group position-absolute w-100 shadow-sm" style="z-index: 1050; display: none; max-height: 250px; overflow-y: auto;">
-                        <!-- Results injected here via JS -->
-                    </ul>
+                    <div class="col-md-5">
+                        <select id="productDropdown" class="form-select form-select-lg" onchange="addFromDropdown(this)">
+                            <option value="">-- Or Select Product --</option>
+                            @foreach($products as $product)
+                                <option value="{{ $product->id }}" 
+                                        data-product='{"id":{{ $product->id }},"name":"{{ $product->name }}","price":{{ $product->price }},"current_stock":{{ $product->current_stock }},"sku":"{{ $product->sku }}"}'>
+                                    {{ $product->name }} ({{ $product->current_stock }} in stock)
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
 
                 <!-- Cart Table -->
@@ -211,6 +224,18 @@
         searchInput.value = '';
         searchResults.style.display = 'none';
         renderCart();
+    }
+
+    function addFromDropdown(selectElement) {
+        if (!selectElement.value) return;
+        
+        const option = selectElement.options[selectElement.selectedIndex];
+        const productData = JSON.parse(option.getAttribute('data-product'));
+        
+        addToCart(productData);
+        
+        // Reset dropdown
+        selectElement.value = '';
     }
 
     function updateQty(id, newQty) {
