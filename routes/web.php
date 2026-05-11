@@ -24,6 +24,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/reports/daily', [ReportController::class, 'daily'])->name('reports.daily');
 
+    Route::get('/sales/search', [SaleController::class, 'searchProduct'])->name('sales.search');
     Route::resource('sales', SaleController::class)->only(['index', 'create', 'store', 'show']);
 });
 

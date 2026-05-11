@@ -99,4 +99,21 @@ class SaleController extends Controller
         $sale->load('items.product', 'user');
         return view('sales.show', compact('sale'));
     }
+    public function searchProduct(Request $request)
+    {
+        $query = $request->get('q');
+        if (!$query) {
+            return response()->json([]);
+        }
+
+        $products = Product::where('current_stock', '>', 0)
+            ->where(function($q) use ($query) {
+                $q->where('name', 'like', "%{$query}%")
+                  ->orWhere('sku', 'like', "%{$query}%");
+            })
+            ->take(10)
+            ->get();
+
+        return response()->json($products);
+    }
 }
