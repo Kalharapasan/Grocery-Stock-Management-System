@@ -13,6 +13,22 @@ A Laravel-based grocery stock management system for tracking products, categorie
 - Daily reports for operational review
 - User profile management
 
+## Screenshots
+
+Add your project screenshots here after uploading them to the repository.
+
+### Dashboard
+
+![Dashboard Screenshot](docs/screenshots/dashboard.png)
+
+### Products
+
+![Products Screenshot](docs/screenshots/products.png)
+
+### Sales
+
+![Sales Screenshot](docs/screenshots/sales.png)
+
 ## Tech Stack
 
 - Laravel 12
