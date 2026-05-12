@@ -25,93 +25,143 @@ A Laravel-based grocery stock management system for tracking products, categorie
 ## Project Structure
 
 ```text
-app/
-	Http/
-		Controllers/
-			Auth/
-			CategoryController.php
-			DashboardController.php
-			ProductController.php
-			ProfileController.php
-			ReportController.php
-			SaleController.php
-			StockMovementController.php
-		Requests/
-			Auth/
-			ProfileUpdateRequest.php
-			StoreCategoryRequest.php
-			StoreProductRequest.php
-			StoreSaleRequest.php
-			UpdateCategoryRequest.php
-			UpdateProductRequest.php
-	Models/
-		Category.php
-		Product.php
-		Sale.php
-		SaleItem.php
-		StockMovement.php
-		User.php
-	Providers/
-		AppServiceProvider.php
-	View/
-		Components/
-bootstrap/
-	app.php
-	providers.php
-	cache/
-config/
-database/
-	factories/
-		CategoryFactory.php
-		ProductFactory.php
-		UserFactory.php
-	migrations/
-		0001_01_01_000000_create_users_table.php
-		0001_01_01_000001_create_cache_table.php
-		0001_01_01_000002_create_jobs_table.php
-		2026_05_02_203559_create_categories_table.php
-		2026_05_10_190230_create_products_table.php
-		2026_05_10_190243_create_stock_movements_table.php
-		2026_05_10_190248_create_sales_table.php
-		2026_05_11_195832_add_expiry_date_to_products_table.php
-		2026_05_11_200158_update_sales_table_add_financials.php
-	seeders/
-		DatabaseSeeder.php
-public/
-	build/
-	index.php
-resources/
-	css/
-		app.css
-	js/
-		app.js
-		bootstrap.js
-	views/
-		auth/
-		categories/
-		components/
-		layouts/
-		products/
-		profile/
-		reports/
-		sales/
-		dashboard.blade.php
-		welcome.blade.php
-routes/
-	auth.php
-	console.php
-	web.php
-storage/
-	app/
-	framework/
-	logs/
-tests/
-	Feature/
-		Auth/
-		ExampleTest.php
-		ProfileTest.php
-	Unit/
-		ExampleTest.php
+project/
+|-- app/
+|   |-- Http/
+|   |   |-- Controllers/
+|   |   |   |-- Auth/
+|   |   |   |   |-- AuthenticatedSessionController.php
+|   |   |   |   |-- ConfirmablePasswordController.php
+|   |   |   |   |-- EmailVerificationNotificationController.php
+|   |   |   |   |-- EmailVerificationPromptController.php
+|   |   |   |   |-- NewPasswordController.php
+|   |   |   |   |-- PasswordController.php
+|   |   |   |   |-- PasswordResetLinkController.php
+|   |   |   |   |-- RegisteredUserController.php
+|   |   |   |   |-- VerifyEmailController.php
+|   |   |   |-- CategoryController.php
+|   |   |   |-- DashboardController.php
+|   |   |   |-- ProductController.php
+|   |   |   |-- ProfileController.php
+|   |   |   |-- ReportController.php
+|   |   |   |-- SaleController.php
+|   |   |   |-- StockMovementController.php
+|   |   |-- Requests/
+|   |   |   |-- Auth/
+|   |   |   |   |-- LoginRequest.php
+|   |   |   |-- ProfileUpdateRequest.php
+|   |   |   |-- StoreCategoryRequest.php
+|   |   |   |-- StoreProductRequest.php
+|   |   |   |-- StoreSaleRequest.php
+|   |   |   |-- UpdateCategoryRequest.php
+|   |   |   |-- UpdateProductRequest.php
+|   |-- Models/
+|   |   |-- Category.php
+|   |   |-- Product.php
+|   |   |-- Sale.php
+|   |   |-- SaleItem.php
+|   |   |-- StockMovement.php
+|   |   |-- User.php
+|   |-- Providers/
+|   |   |-- AppServiceProvider.php
+|   |-- View/
+|       |-- Components/
+|-- bootstrap/
+|   |-- app.php
+|   |-- providers.php
+|   |-- cache/
+|-- config/
+|-- database/
+|   |-- factories/
+|   |   |-- CategoryFactory.php
+|   |   |-- ProductFactory.php
+|   |   |-- UserFactory.php
+|   |-- migrations/
+|   |   |-- 0001_01_01_000000_create_users_table.php
+|   |   |-- 0001_01_01_000001_create_cache_table.php
+|   |   |-- 0001_01_01_000002_create_jobs_table.php
+|   |   |-- 2026_05_02_203559_create_categories_table.php
+|   |   |-- 2026_05_10_190230_create_products_table.php
+|   |   |-- 2026_05_10_190243_create_stock_movements_table.php
+|   |   |-- 2026_05_10_190248_create_sales_table.php
+|   |   |-- 2026_05_11_195832_add_expiry_date_to_products_table.php
+|   |   |-- 2026_05_11_200158_update_sales_table_add_financials.php
+|   |-- seeders/
+|       |-- DatabaseSeeder.php
+|-- public/
+|   |-- build/
+|   |-- index.php
+|-- resources/
+|   |-- css/
+|   |   |-- app.css
+|   |-- js/
+|   |   |-- app.js
+|   |   |-- bootstrap.js
+|   |-- views/
+|       |-- auth/
+|       |   |-- confirm-password.blade.php
+|       |   |-- forgot-password.blade.php
+|       |   |-- login.blade.php
+|       |   |-- register.blade.php
+|       |   |-- reset-password.blade.php
+|       |   |-- verify-email.blade.php
+|       |-- categories/
+|       |-- components/
+|       |   |-- application-logo.blade.php
+|       |   |-- auth-session-status.blade.php
+|       |   |-- danger-button.blade.php
+|       |   |-- dropdown-link.blade.php
+|       |   |-- dropdown.blade.php
+|       |   |-- input-error.blade.php
+|       |   |-- input-label.blade.php
+|       |   |-- modal.blade.php
+|       |   |-- nav-link.blade.php
+|       |   |-- primary-button.blade.php
+|       |   |-- responsive-nav-link.blade.php
+|       |   |-- secondary-button.blade.php
+|       |   |-- text-input.blade.php
+|       |-- layouts/
+|       |   |-- app.blade.php
+|       |   |-- guest.blade.php
+|       |   |-- navigation.blade.php
+|       |-- products/
+|       |-- profile/
+|       |-- reports/
+|       |-- sales/
+|       |-- dashboard.blade.php
+|       |-- welcome.blade.php
+|-- routes/
+|   |-- auth.php
+|   |-- console.php
+|   |-- web.php
+|-- storage/
+|   |-- app/
+|   |   |-- private/
+|   |   |-- public/
+|   |-- framework/
+|   |   |-- cache/
+|   |   |-- sessions/
+|   |   |-- testing/
+|   |   |-- views/
+|   |-- logs/
+|-- tests/
+|   |-- Feature/
+|   |   |-- Auth/
+|   |   |-- ExampleTest.php
+|   |   |-- ProfileTest.php
+|   |-- Unit/
+|       |-- ExampleTest.php
+|-- artisan
+|-- composer.json
+|-- composer.lock
+|-- package.json
+|-- package-lock.json
+|-- phpunit.xml
+|-- postcss.config.js
+|-- README.md
+|-- tailwind.config.js
+|-- vite.config.js
+|-- LICENSE.md
 ```
 
 ## Functionality
