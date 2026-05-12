@@ -30,6 +30,22 @@ A Laravel-based grocery stock management system for tracking products, categorie
 - `/sales` - record and review sales
 - `/reports/daily` - view daily reports
 
+## Core Data Models
+
+- Category - groups products by type
+- Product - stores SKU, pricing, stock, expiry date, and inventory thresholds
+- StockMovement - records stock in and stock out events
+- Sale - stores customer and payment details for each transaction
+- SaleItem - stores the items sold within a sale
+
+## Typical Workflow
+
+1. Create product categories.
+2. Add products and set stock, pricing, and expiry information.
+3. Record stock in and stock out movements as inventory changes.
+4. Create sales transactions from available stock.
+5. Review the dashboard and daily reports to monitor performance.
+
 ## Requirements
 
 - PHP 8.2 or later
@@ -95,6 +111,7 @@ npm run dev
 
 - The root route redirects to the dashboard.
 - Authenticated and verified users can access the main inventory and sales features.
+- Product records can be flagged as low stock or expired based on the configured thresholds and expiry dates.
 
 ## License
 
