@@ -15,17 +15,28 @@ A Laravel-based grocery stock management system for tracking products, categorie
 
 ## Screenshots
 
-<img width="1366" height="624" alt="Report" src="https://github.com/user-attachments/assets/8ef0a3b8-dcd6-42ed-b633-ff7a1aed8149" />
-<img width="1366" height="615" alt="Products" src="https://github.com/user-attachments/assets/3734b43b-fd6a-4739-8807-fd3943c5f34e" />
-<img width="1365" height="637" alt="Categories" src="https://github.com/user-attachments/assets/1ddaf776-677a-4607-9f6b-b7afbca269e6" />
-<img width="1366" height="622" alt="Dashbord" src="https://github.com/user-attachments/assets/2859b731-1630-4785-aaa2-5934452e617f" />
-<img width="665" height="554" alt="Register" src="https://github.com/user-attachments/assets/ad4434d3-8541-476b-aafb-088d0c6d9ccd" />
-<img width="840" height="542" alt="login" src="https://github.com/user-attachments/assets/475b182e-219a-4e90-b9c3-1bdc32bb355d" />
-
-<img width="1027" height="441" alt="Add_Categary" src="https://github.com/user-attachments/assets/81a75cf4-eea6-4851-b330-7c7c132cd5c5" />
-<img width="932" height="504" alt="Add_Product" src="https://github.com/user-attachments/assets/8de06f5c-6efd-4ed0-b95f-49e4902c7261" />
-<img width="1365" height="637" alt="Categories" src="https://github.com/user-attachments/assets/8e17db29-a311-4bed-9cc3-4c5f9ef571dd" />
-<img width="1366" height="621" alt="Salese" src="https://github.com/user-attachments/assets/035d4fc8-80cc-48eb-8d60-7a38c22ce618" />
+<table>
+	<tr>
+		<td align="center"><img src="https://github.com/user-attachments/assets/2859b731-1630-4785-aaa2-5934452e617f" alt="Dashboard" width="340" height="190" /></td>
+		<td align="center"><img src="https://github.com/user-attachments/assets/3734b43b-fd6a-4739-8807-fd3943c5f34e" alt="Products" width="340" height="190" /></td>
+	</tr>
+	<tr>
+		<td align="center"><img src="https://github.com/user-attachments/assets/1ddaf776-677a-4607-9f6b-b7afbca269e6" alt="Categories" width="340" height="190" /></td>
+		<td align="center"><img src="https://github.com/user-attachments/assets/8ef0a3b8-dcd6-42ed-b633-ff7a1aed8149" alt="Reports" width="340" height="190" /></td>
+	</tr>
+	<tr>
+		<td align="center"><img src="https://github.com/user-attachments/assets/475b182e-219a-4e90-b9c3-1bdc32bb355d" alt="Login" width="340" height="190" /></td>
+		<td align="center"><img src="https://github.com/user-attachments/assets/ad4434d3-8541-476b-aafb-088d0c6d9ccd" alt="Register" width="340" height="190" /></td>
+	</tr>
+	<tr>
+		<td align="center"><img src="https://github.com/user-attachments/assets/81a75cf4-eea6-4851-b330-7c7c132cd5c5" alt="Add Category" width="340" height="190" /></td>
+		<td align="center"><img src="https://github.com/user-attachments/assets/8de06f5c-6efd-4ed0-b95f-49e4902c7261" alt="Add Product" width="340" height="190" /></td>
+	</tr>
+	<tr>
+		<td align="center"><img src="https://github.com/user-attachments/assets/8e17db29-a311-4bed-9cc3-4c5f9ef571dd" alt="Categories View" width="340" height="190" /></td>
+		<td align="center"><img src="https://github.com/user-attachments/assets/035d4fc8-80cc-48eb-8d60-7a38c22ce618" alt="Sales" width="340" height="190" /></td>
+	</tr>
+</table>
 
 ## Tech Stack
 
