@@ -22,6 +22,39 @@ A Laravel-based grocery stock management system for tracking products, categorie
 - Bootstrap 5
 - Alpine.js
 
+## Project Structure
+
+```text
+app/
+	Http/Controllers/   Application controllers
+	Models/             Eloquent models for categories, products, sales, and stock
+	Providers/          App service providers
+bootstrap/            Framework bootstrap files
+config/               Application configuration
+database/
+	factories/          Model factories for testing and seeding
+	migrations/         Database schema changes
+	seeders/            Seed data
+public/               Web entry point and compiled assets
+resources/
+	css/                Application styles
+	js/                 Frontend scripts
+	views/              Blade templates
+routes/               Web, auth, and console routes
+storage/              Logs, cached files, and uploaded content
+tests/                Automated tests
+```
+
+## Functionality
+
+- User authentication with verified access for protected areas
+- Category management for organizing products
+- Product management with SKU, pricing, stock, expiry, and threshold tracking
+- Stock in and stock out movements for inventory updates
+- Sales entry with customer and payment details
+- Daily reporting for monitoring store activity
+- Dashboard overview for quick operational status
+
 ## Main Areas
 
 - `/dashboard` - application overview
