@@ -96,3 +96,7 @@ npm run dev
 - The root route redirects to the dashboard.
 - Authenticated and verified users can access the main inventory and sales features.
 
+## License
+
+This project is covered by a proprietary license. See [LICENSE.md](LICENSE.md) for the full terms and permission requirements.
+
