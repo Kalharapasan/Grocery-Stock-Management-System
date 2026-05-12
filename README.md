@@ -25,7 +25,7 @@ A Laravel-based grocery stock management system for tracking products, categorie
 ## Project Structure
 
 ```text
-project/
+.
 |-- app/
 |   |-- Http/
 |   |   |-- Controllers/
