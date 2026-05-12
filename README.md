@@ -26,23 +26,92 @@ A Laravel-based grocery stock management system for tracking products, categorie
 
 ```text
 app/
-	Http/Controllers/   Application controllers
-	Models/             Eloquent models for categories, products, sales, and stock
-	Providers/          App service providers
-bootstrap/            Framework bootstrap files
-config/               Application configuration
+	Http/
+		Controllers/
+			Auth/
+			CategoryController.php
+			DashboardController.php
+			ProductController.php
+			ProfileController.php
+			ReportController.php
+			SaleController.php
+			StockMovementController.php
+		Requests/
+			Auth/
+			ProfileUpdateRequest.php
+			StoreCategoryRequest.php
+			StoreProductRequest.php
+			StoreSaleRequest.php
+			UpdateCategoryRequest.php
+			UpdateProductRequest.php
+	Models/
+		Category.php
+		Product.php
+		Sale.php
+		SaleItem.php
+		StockMovement.php
+		User.php
+	Providers/
+		AppServiceProvider.php
+	View/
+		Components/
+bootstrap/
+	app.php
+	providers.php
+	cache/
+config/
 database/
-	factories/          Model factories for testing and seeding
-	migrations/         Database schema changes
-	seeders/            Seed data
-public/               Web entry point and compiled assets
+	factories/
+		CategoryFactory.php
+		ProductFactory.php
+		UserFactory.php
+	migrations/
+		0001_01_01_000000_create_users_table.php
+		0001_01_01_000001_create_cache_table.php
+		0001_01_01_000002_create_jobs_table.php
+		2026_05_02_203559_create_categories_table.php
+		2026_05_10_190230_create_products_table.php
+		2026_05_10_190243_create_stock_movements_table.php
+		2026_05_10_190248_create_sales_table.php
+		2026_05_11_195832_add_expiry_date_to_products_table.php
+		2026_05_11_200158_update_sales_table_add_financials.php
+	seeders/
+		DatabaseSeeder.php
+public/
+	build/
+	index.php
 resources/
-	css/                Application styles
-	js/                 Frontend scripts
-	views/              Blade templates
-routes/               Web, auth, and console routes
-storage/              Logs, cached files, and uploaded content
-tests/                Automated tests
+	css/
+		app.css
+	js/
+		app.js
+		bootstrap.js
+	views/
+		auth/
+		categories/
+		components/
+		layouts/
+		products/
+		profile/
+		reports/
+		sales/
+		dashboard.blade.php
+		welcome.blade.php
+routes/
+	auth.php
+	console.php
+	web.php
+storage/
+	app/
+	framework/
+	logs/
+tests/
+	Feature/
+		Auth/
+		ExampleTest.php
+		ProfileTest.php
+	Unit/
+		ExampleTest.php
 ```
 
 ## Functionality
