@@ -49,11 +49,26 @@ tests/                Automated tests
 
 - User authentication with verified access for protected areas
 - Category management for organizing products
-- Product management with SKU, pricing, stock, expiry, and threshold tracking
+- Product management with SKU, unit, pricing, cost, stock, and threshold tracking
 - Stock in and stock out movements for inventory updates
-- Sales entry with customer and payment details
+- Sales entry with customer details, item lines, and totals
 - Daily reporting for monitoring store activity
 - Dashboard overview for quick operational status
+
+## Database Overview
+
+- categories - stores category name and description
+- products - stores product details, SKU, unit, price, cost price, stock level, threshold, and image
+- stock_movements - stores stock in/out activity, quantity, reference, and notes
+- sales - stores sale header details such as customer, user, total amount, and notes
+- sale_items - stores the sold products, quantities, unit prices, and line totals
+
+## Key Business Rules
+
+- Every product belongs to one category.
+- Stock movement records are linked to both a product and the authenticated user.
+- Sales can contain multiple item lines through sale items.
+- Low-stock alerts are based on each product's threshold value.
 
 ## Main Areas
 
@@ -145,6 +160,7 @@ npm run dev
 - The root route redirects to the dashboard.
 - Authenticated and verified users can access the main inventory and sales features.
 - Product records can be flagged as low stock or expired based on the configured thresholds and expiry dates.
+- The system is designed for store-side inventory control, sales recording, and basic reporting.
 
 ## License
 
